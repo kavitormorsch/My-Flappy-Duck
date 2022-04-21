@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://pngwing.com (2).png" type="Texture" id=1]
+[ext_resource path="res://Pato.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 18.6487, 15.4556 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 27.5, 19.5 )
+
+[node name="Pato" type="KinematicBody2D"]
+position = Vector2( 316, 173 )
+script = ExtResource( 2 )
+
+[node name="SpritePato" type="Sprite" parent="."]
+scale = Vector2( 0.138047, 0.135135 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
+scale = Vector2( 1.47463, 1.26168 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0.5, 1.5 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_Area2D_body_shape_entered"]

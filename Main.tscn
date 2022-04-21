@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Pipes.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Pato.tscn" type="PackedScene" id=3]
+[ext_resource path="res://WorkSans-ExtraLight.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://ScoreLabel.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="Game" type="Node2D"]
+
+[node name="ScoreLabel" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 11.0
+margin_right = 136.0
+margin_bottom = 60.0
+theme = SubResource( 2 )
+text = "Score: 0"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 450, 201 )
+
+[node name="Pato" parent="." instance=ExtResource( 3 )]
+position = Vector2( 209, 193 )
+
+[node name="Pipes" parent="." instance=ExtResource( 1 )]
+
+[connection signal="ponto" from="Pato" to="ScoreLabel" method="_on_Pato_ponto"]
